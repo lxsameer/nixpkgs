@@ -58,8 +58,9 @@ stdenv.mkDerivation rec {
       substituteInPlace intl/Makefile.in --replace "AR = ar" ""
     '';
 
-  # Workaround to fix the static build on macOS.
-  NIX_CFLAGS_COMPILE = "-Wno-implicit-function-declaration";
+  env = {
+    NIX_CFLAGS_COMPILE = "-Wno-error=implicit-function-declaration";
+  };
 
   doCheck = true;
 
