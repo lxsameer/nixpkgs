@@ -144,6 +144,10 @@ in let
       inherit llvm_meta;
     };
 
+    mlir = callPackage ./mlir {
+      inherit llvm_meta;
+    };
+
     lldb = callPackage ../common/lldb.nix {
       src = callPackage ({ runCommand }: runCommand "lldb-src-${version}" {} ''
         mkdir -p "$out"
@@ -358,6 +362,11 @@ in let
     openmp = callPackage ./openmp {
       inherit llvm_meta targetLlvm;
     };
+
+    mlir = callPackage ./mlir {
+      inherit llvm_meta targetLlvm buildLlvmTools;
+    };
+
   });
   noExtend = extensible: lib.attrsets.removeAttrs extensible [ "extend" ];
 
