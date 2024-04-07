@@ -128,7 +128,8 @@ stdenv.mkDerivation (finalAttrs: {
   ++ lib.optionals targetPlatform.isVc4 [ flex ]
   ;
 
-  buildInputs = [ zlib gettext ];
+  env.NIX_LDFLAGS = lib.optionalString (hostPlatform.linker == "lld") "--undefined-version";
+  buildInputs = [ zlib gettext zlib.static ];
 
   inherit noSysDirs;
 
