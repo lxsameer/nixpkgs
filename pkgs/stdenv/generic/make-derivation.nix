@@ -188,7 +188,7 @@ in rec {
            "__darwinAllowLocalNetworking"
            "__impureHostDeps" "__propagatedImpureHostDeps"
            "sandboxProfile" "propagatedSandboxProfile"])
-        // (lib.optionalAttrs (!(attrs ? name) && attrs ? pname && (attrs ? version && attrs.version != null)) {
+        // (lib.optionalAttrs (!(attrs ? name) && attrs ? pname && (attrs ? version && attrs.version != null))) {
           name = builtins.trace ">>> ${attrs.pname ? "0"}" "${attrs.pname}-${attrs.version}";
         } // (lib.optionalAttrs (stdenv.hostPlatform != stdenv.buildPlatform && !dontAddHostSuffix && (attrs ? name || (attrs ? pname && attrs ? version)))) {
           # Fixed-output derivations like source tarballs shouldn't get a host
