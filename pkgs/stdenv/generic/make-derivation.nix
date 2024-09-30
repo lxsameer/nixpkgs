@@ -189,7 +189,7 @@ in rec {
            "__impureHostDeps" "__propagatedImpureHostDeps"
            "sandboxProfile" "propagatedSandboxProfile"])
         // (lib.optionalAttrs (!(attrs ? name) && attrs ? pname && (attrs ? version && attrs.version != null))) {
-          name = builtins.trace ">>> ${attrs.pname ? "0"}" "${attrs.pname}-${attrs.version}";
+          name = builtins.trace ">>> ${attrs.pname}" "${attrs.pname}-${attrs.version}";
         } // (lib.optionalAttrs (stdenv.hostPlatform != stdenv.buildPlatform && !dontAddHostSuffix && (attrs ? name || (attrs ? pname && attrs ? version)))) {
           # Fixed-output derivations like source tarballs shouldn't get a host
           # suffix. But we have some weird ones with run-time deps that are
